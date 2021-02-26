@@ -10,19 +10,19 @@ const typeDefs = fs.readFileSync('./graphql/schema.graphql', 'utf-8');
 
 const resolvers = {
   User: {
-    profiles: (parent, args) => {
+    profiles: ({ id }, args, { user }) => {
       if (!user) throw new Error('You are not authorized');
       return Profile.findAll({
         where: {
-          userId: parent.id,
+          userId: id,
         },
       });
     },
   },
   Profile: {
-    user: (parent, args) => {
+    user: ({ userId }, args, { user }) => {
       if (!user) throw new Error('You are not authorized');
-      return User.findByPk(parent.userId);
+      return User.findByPk(userId);
     },
   },
   Query: {
@@ -30,15 +30,18 @@ const resolvers = {
       if (!user) throw new Error('You are not authenticated');
       return User.findAll();
     },
-    user: (parent, { userId }) => {
+    user: (parent, { userId }, { user }) => {
       if (!user) throw new Error('You are not authorized');
       return User.findByPk(userId);
     },
-    profiles: (parent, { userId }) => Profile.findAll({
-      where: {
-        userId,
-      },
-    }),
+    profiles: (parent, { userId }, { user }) => {
+      if (!user) throw new Error('You are not authorized');
+      return Profile.findAll({
+        where: {
+          userId,
+        },
+      });
+    },
   },
   Mutation: {
     login: async (parent, { email, password }) => {
