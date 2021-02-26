@@ -1,0 +1,29 @@
+.header {
+  height: 3.5rem;
+  box-shadow: 1px 0 5px 1px rgba(0, 0, 0, .15);
+  margin-bottom: 1rem;
+
+  &__nav {
+    height: 100%;
+    width: 50%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    &-link {
+      text-decoration: none;
+      color: #343434;
+      width: 10rem;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: .4s all;
+
+      &:hover {
+        background-color: lightgrey;
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/admin-postgres.iml" filepath="$PROJECT_DIR$/.idea/admin-postgres.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../graphql-test/.idea/graphql-test.iml" filepath="$PROJECT_DIR$/../graphql-test/.idea/graphql-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../ngx-croppie/.idea/ngx-croppie.iml" filepath="$PROJECT_DIR$/../../ngx-croppie/.idea/ngx-croppie.iml" />
     </modules>
   </component>
 </project>
