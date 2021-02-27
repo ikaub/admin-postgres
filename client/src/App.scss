@@ -2,9 +2,12 @@
 
 @import './pages/Auth/auth.styles';
 @import './pages/CreateProfile/create-profile.styles';
+@import './pages/Admin/admin.styles';
 
 @import './components/Header/header.styles';
 @import './components/UpdateModal/update-modal.styles';
+@import './components/ProfileForm/profile-form.styles';
+@import './components/ErrorMessage/error-message.styles';
 
 *, *::before, *::after {
   padding: 0;

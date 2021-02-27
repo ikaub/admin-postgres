@@ -7,11 +7,16 @@ import { GetProfilesById } from '../../graphql/queries/profile.queries';
 import { DeleteProfile } from '../../graphql/mutations/profile.mutations';
 import { UpdateModal } from '../../components/UpdateModal/UpdateModal';
 
-export const User: React.FC = () => {
-  const id = JSON.parse(localStorage.getItem('user') as string).id;
-  const { data } = useQuery(GetProfilesById, {
+type UserProps = {
+  userId?: number;
+}
+
+export const User: React.FC<UserProps> = ({ userId }: UserProps) => {
+  const id = userId || JSON.parse(localStorage.getItem('user') as string).id;
+  const { data, error } = useQuery(GetProfilesById, {
     variables: { userId: +id },
   });
+  console.log(id, JSON.parse(localStorage.getItem('user') as string));
   const [ deleteProfile ] = useMutation(DeleteProfile);
   const [ modalId, setModalId ] = useState(0);
 
@@ -58,7 +63,7 @@ export const User: React.FC = () => {
                 <TableCell onClick={() => handleDelete(profile.id)}><Button
                   color="secondary">Delete</Button></TableCell>
               </TableRow>
-            )) : null}
+            )) : 'Loading...'}
           </TableBody>
         </Table>
       </TableContainer>

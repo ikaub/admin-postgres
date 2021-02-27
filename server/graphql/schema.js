@@ -10,8 +10,7 @@ const typeDefs = fs.readFileSync('./graphql/schema.graphql', 'utf-8');
 
 const resolvers = {
   User: {
-    profiles: ({ id }, args, { user }) => {
-      if (!user) throw new Error('You are not authorized');
+    profiles: ({ id }) => {
       return Profile.findAll({
         where: {
           userId: id,
@@ -20,14 +19,14 @@ const resolvers = {
     },
   },
   Profile: {
-    user: ({ userId }, args, { user }) => {
-      if (!user) throw new Error('You are not authorized');
+    user: ({ userId }) => {
       return User.findByPk(userId);
     },
   },
   Query: {
     users: (parent, args, { user }) => {
       if (!user) throw new Error('You are not authenticated');
+      if (user.role !== 'ADMIN') throw new Error('You don\'t have admin rights');
       return User.findAll();
     },
     user: (parent, { userId }, { user }) => {
@@ -119,6 +118,23 @@ const resolvers = {
         where: { id: profileId },
       });
       return profileId;
+    },
+
+    upgradeUser: async (parent, { userId }, { user }) => {
+      if (!user) throw new Error('You are not authorized');
+      await User.update(
+        { role: 'ADMIN' },
+        { where: { id: userId } }
+      );
+      return userId;
+    },
+
+    deleteUser: async (parent, { userId }, { user }) => {
+      if (!user) throw new Error('You are not authorized');
+      await User.destroy({
+        where: { id: userId },
+      });
+      return userId;
     }
   },
 };

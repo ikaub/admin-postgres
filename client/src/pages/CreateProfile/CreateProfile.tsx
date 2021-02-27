@@ -4,7 +4,6 @@ import { useMutation } from '@apollo/client';
 import { CreateProfile as CreateProfileMutation } from '../../graphql/mutations/profile.mutations';
 import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
 import { Profile } from '../../types/app.types';
-import { Button } from '@material-ui/core';
 
 const initialValues = {
   username: '',
@@ -14,7 +13,7 @@ const initialValues = {
 };
 
 export const CreateProfile: React.FC = () => {
-  const [ createProfile, { loading, error } ] = useMutation(CreateProfileMutation,);
+  const [ createProfile ] = useMutation(CreateProfileMutation,);
 
   const handleSubmit = async (values: Partial<Profile>) => {
     await createProfile({

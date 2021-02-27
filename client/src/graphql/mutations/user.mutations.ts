@@ -28,3 +28,15 @@ export const Login = gql`
     }
     ${ProfileInfo}
 `;
+
+export const UpgradeUser = gql`
+    mutation UpgradeUser($userId: Int) {
+        upgradeUser(userId: $userId)
+    }
+`;
+
+export const DeleteUser = gql`
+    mutation DeleteUser($userId: Int) {
+        deleteUser(userId: $userId)
+    }
+`;

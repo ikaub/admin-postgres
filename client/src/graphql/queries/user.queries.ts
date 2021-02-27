@@ -14,3 +14,17 @@ export const GetUser = gql`
     }
     ${ProfileInfo}
 `;
+
+export const GetAllUsers = gql`
+    query GetAllUsers {
+        users {
+            email
+            id
+            role
+            profiles {
+                ...profileInfo
+            }
+        }
+    }
+    ${ProfileInfo}
+`;

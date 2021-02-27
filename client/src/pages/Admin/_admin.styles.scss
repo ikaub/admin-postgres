@@ -1,0 +1,16 @@
+.admin {
+  padding: 1rem 4rem;
+
+  .users-data {
+    display: inline-block;
+  }
+
+  .card {
+    display: inline-block;
+    float: right;
+
+    &__info {
+      margin: 1rem 0;
+    }
+  }
+}

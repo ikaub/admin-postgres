@@ -21,7 +21,6 @@ type Query {
     users: [User]
     user(userId: Int): User
     profiles(userId: Int): [Profile]
-    profile(profileId: Int): Profile
 }
 
 input ProfileInfo {
@@ -38,4 +37,6 @@ type Mutation {
     createProfile(profile: ProfileInfo): Profile
     updateProfile(profile: ProfileInfo): Profile
     deleteProfile(profileId: Int): Int
+    upgradeUser(userId: Int): Int
+    deleteUser(userId: Int): Int
 }

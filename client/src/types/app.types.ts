@@ -5,3 +5,10 @@ export interface Profile extends Record<string, string | number> {
   city: string;
   id: number;
 }
+
+export interface User extends Record<string, string | Profile[] | number> {
+  email: string;
+  id: number;
+  role: string;
+  profiles: Profile[];
+}
